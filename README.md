@@ -44,9 +44,9 @@ Whether you want to **track expenses, set bill reminders, or manage loans**, thi
 ## 🖼️ Screenshots
 
 ### 📌 Dashboard View
-![Dashboard]()
+![Dashboard](Dashboard'.png)
 
 ### 📌 Transaction History
-![Transactions](https://raw.githubusercontent.com/your-username/personal-finance-app/main/transactions.png)
+![Transactions](Signin.png)
 
 
