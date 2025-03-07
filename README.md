@@ -41,4 +41,12 @@ Whether you want to **track expenses, set bill reminders, or manage loans**, thi
 - User authentication using JWT.
 
 ---
+## 🖼️ Screenshots
+
+### 📌 Dashboard View
+![Dashboard]()
+
+### 📌 Transaction History
+![Transactions](https://raw.githubusercontent.com/your-username/personal-finance-app/main/transactions.png)
+
 
