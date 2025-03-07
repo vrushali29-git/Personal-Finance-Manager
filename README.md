@@ -36,10 +36,6 @@ Whether you want to **track expenses, set bill reminders, or manage loans**, thi
 - View **visual graphs** of spending habits.
 - Track monthly, weekly, and daily financial summaries.
 
-### 🔗 **Payment Gateway Integration**
-- Secure integration with **payment platforms** like Stripe, Razorpay, or PayPal.
-- Pay bills directly from the app.
-
 ### 🔒 **Secure Data Storage**
 - Encrypted data storage with MongoDB.
 - User authentication using JWT.
