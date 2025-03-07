@@ -42,11 +42,12 @@ Whether you want to **track expenses, set bill reminders, or manage loans**, thi
 
 ---
 ## 🖼️ Screenshots
+### 📌 Signin Page
+![SIgnin](Signin.png)
 
 ### 📌 Dashboard View
 ![Dashboard](Dashboard'.png)
 
-### 📌 Transaction History
-![Transactions](Signin.png)
+
 
 
