@@ -1,4 +1,4 @@
-# 💰 Personal Finance Management Web App
+# 💰 Personal Finance Manager Web App
 
 ## 📌 Overview
 
