@@ -15,7 +15,7 @@ export default function PersonalFinanceDashboard() {
   const [transactionType, setTransactionType] = useState("expense");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const [transactions, setTransactions] = useState([]);
   const [activePanel, setActivePanel] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function PersonalFinanceDashboard() {
   const [bills, setBills] = useState([]);
   const [billName, setBillName] = useState("");
   const [billAmount, setBillAmount] = useState("");
-const [billDueDate, setBillDueDate] = useState("");
+  const [billDueDate, setBillDueDate] = useState("");
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("INR");
   const [convertedAmount, setConvertedAmount] = useState(null);
@@ -304,31 +304,8 @@ useEffect(() => {
       alert('Failed to save transaction');
     }
   };
-  const markAsPaid = async (loanId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/loans/${loanId}/status`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ status: 'paid' })
-      });
-  
-      const data = await response.json();
-      if (response.ok) {
-        // Update the loans list
-        setLoans(loans.map(loan => 
-          loan._id === loanId ? { ...loan, paid: true } : loan
-        ));
-      } else {
-        alert(data.error || 'Failed to update loan status');
-      }
-    } catch (error) {
-      console.error('Error updating loan status:', error);
-      alert('Failed to update loan status');
-    }
-  };
+
+  // mark as paid
   const handleBillStatusUpdate = async (billId) => {
     try {
       const response = await fetch(`http://localhost:5000/api/bills/${billId}/status`, {
@@ -353,6 +330,32 @@ useEffect(() => {
       alert('Failed to update bill status');
     }
   };
+
+  //markap paid loans
+  const markLoanAsPaid = async (loanId) => {
+    try {
+      // Optimistically update UI
+      setLoans((prevLoans) =>
+        prevLoans.map((loan) =>
+          loan._id === loanId ? { ...loan, status: "paid" } : loan
+        )
+      );
+  
+      // Update status in backend
+      const response = await fetch(`/api/loans/${loanId}/mark-paid`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "paid" }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update loan status");
+      }
+    } catch (error) {
+      console.error("Error updating loan:", error);
+    }
+  };
+  
   
 
 
@@ -532,13 +535,13 @@ useEffect(() => {
                       <td>₹{interest.toFixed(2)}</td>
                       <td>₹{totalPayable.toFixed(2)}</td>
                       <td>
-                        {loan.status === 'paid' ? (
-                          <CheckCircle size={24} color="green" />
-                        ) : (
-                          <button onClick={() => markAsPaid(loan._id)} className="mark-paid-button">
-                            Mark as Paid
-                          </button>
-                        )}
+                      {loan.status === "paid" ? (
+                        <CheckCircle size={24} color="green" />
+                      ) : (
+                        <button onClick={() => markLoanAsPaid(loan._id)} className="mark-paid-button">
+                           Mark as Paid
+                        </button>
+                       )}
                       </td>
                     </tr>
                   );
